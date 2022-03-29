@@ -1,3 +1,0 @@
-->> Colocar um contador de questões corretas (Colocar em uma nova tela)
-->> Adicionar mais de 10 questão e tornar random
-->> Adicionar um botão para pular a questão
