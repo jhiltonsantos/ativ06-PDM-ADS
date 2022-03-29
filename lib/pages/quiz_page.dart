@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+
 import 'package:quizz_flutter/domain/quiz_brain.dart';
 import 'package:quizz_flutter/pages/result_page.dart';
 import 'package:quizz_flutter/resources/build_button.dart';
 import 'package:quizz_flutter/resources/icons_answer.dart';
-import 'package:rflutter_alert/rflutter_alert.dart';
 
 enum Answer { TRUE, FALSE, MAYBE }
 
@@ -21,10 +21,14 @@ class _QuizPageState extends State<QuizPage> {
   int countRightAnswers = 0;
   int countAnswers = 14;
   int countMaybe = 0;
+  late double percentAnswers;
   List<int> questions = [0];
+  int valueQuestion = 0;
+
+
 
   void checkAnswer(Answer userPickedAnswer) {
-    bool correctAnswer = quizBrain.getCorrectAnswer();
+    int correctAnswer = quizBrain.getCorrectAnswer(valueQuestion) as int;
 
     setState(() {
       if (quizBrain.isFinished() == true) {
@@ -36,6 +40,7 @@ class _QuizPageState extends State<QuizPage> {
                 builder: (context) => ResultPage(
                       correctAnswers: countRightAnswers,
                       countAnswers: countAnswers,
+                      percent: percentAnswers.toStringAsFixed(1),
                     )));
       } else {
         if (userPickedAnswer == Answer.MAYBE) {
@@ -45,7 +50,7 @@ class _QuizPageState extends State<QuizPage> {
           ));
           countMaybe++;
         } else {
-          if (correctAnswer) {
+          if (correctAnswer == 0) {
             if (userPickedAnswer == Answer.TRUE) {
               scoreKeeper.add(iconTrue());
               countRightAnswers++;
@@ -62,24 +67,23 @@ class _QuizPageState extends State<QuizPage> {
           }
         }
       }
+      percentAnswers = (countRightAnswers / countAnswers) * 100;
       nextQuestion();
     });
   }
 
-  void nextQuestion () {
-    int valueQuestion = quizBrain.nextRandomQuestion();
+  void nextQuestion() {
+    valueQuestion = quizBrain.nextRandomQuestion();
     for (var question in questions) {
       if (valueQuestion == question) {
         setState(() {
           nextQuestion();
         });
-
       }
     }
     quizBrain.nextQuestion(valueQuestion);
     questions.add(valueQuestion);
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -96,7 +100,7 @@ class _QuizPageState extends State<QuizPage> {
                 padding: const EdgeInsets.all(10.0),
                 child: Center(
                   child: Text(
-                    quizBrain.getQuestionText(),
+                    quizBrain.getQuestionText(valueQuestion) as String,
                     textAlign: TextAlign.center,
                     style: const TextStyle(
                       fontSize: 25.0,
@@ -121,8 +125,8 @@ class _QuizPageState extends State<QuizPage> {
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.all(15.0),
-                child: buildButton(Colors.blue, Colors.deepPurpleAccent, 'Talvez',
-                    () => checkAnswer(Answer.MAYBE)),
+                child: buildButton(Colors.blue, Colors.deepPurpleAccent,
+                    'Talvez', () => checkAnswer(Answer.MAYBE)),
               ),
             ),
             Padding(
@@ -136,7 +140,7 @@ class _QuizPageState extends State<QuizPage> {
                         ),
                         Row(
                           children: [
-                            Text('$countRightAnswers/$countAnswers',
+                            Text('${percentAnswers.toStringAsFixed(1)}%',
                                 style: const TextStyle(
                                     fontSize: 14.0,
                                     color: Colors.white,

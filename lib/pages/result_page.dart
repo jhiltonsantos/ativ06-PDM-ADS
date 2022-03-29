@@ -5,9 +5,10 @@ import 'package:quizz_flutter/resources/build_button.dart';
 class ResultPage extends StatefulWidget {
   final int correctAnswers;
   final int countAnswers;
+  final String percent;
 
   const ResultPage(
-      {Key? key, required this.correctAnswers, required this.countAnswers})
+      {Key? key, required this.correctAnswers, required this.countAnswers, required this.percent})
       : super(key: key);
 
   @override
@@ -61,7 +62,7 @@ class _ResultPageState extends State<ResultPage> {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        "${widget.correctAnswers} respostas corretas de ${widget.countAnswers} questões!",
+                        "${widget.percent}% das questões estão corretas!",
                         style: const TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
