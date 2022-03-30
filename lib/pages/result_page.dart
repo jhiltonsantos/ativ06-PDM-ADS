@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:quizz_flutter/pages/quiz_page.dart';
-import 'package:quizz_flutter/resources/build_button.dart';
+import 'package:quizz_desafio/pages/quiz_page.dart';
+import 'package:quizz_desafio/resources/build_button.dart';
 
 class ResultPage extends StatefulWidget {
   final int correctAnswers;
-  final int countAnswers;
   final String percent;
 
-  const ResultPage(
-      {Key? key, required this.correctAnswers, required this.countAnswers, required this.percent})
-      : super(key: key);
+  const ResultPage({Key? key, required this.correctAnswers, required this.percent}) : super(key: key);
 
   @override
   State<ResultPage> createState() => _ResultPageState();
@@ -17,11 +14,11 @@ class ResultPage extends StatefulWidget {
 
 class _ResultPageState extends State<ResultPage> {
   String textResult() {
-    if (widget.correctAnswers < 5) {
+    if (widget.correctAnswers < 4) {
       return 'Você foi mal, tente mais uma vez!!!';
-    } else if (widget.correctAnswers < 10) {
+    } else if (widget.correctAnswers < 6) {
       return 'Você foi bem, mas ainda pode melhorar!!!';
-    } else if (widget.correctAnswers < 13) {
+    } else if (widget.correctAnswers < 8) {
       return 'Você foi ótimo, faltou pouco para acertar todas!!!';
     } else {
       return 'Você foi excelente, acertou todas!!!';
@@ -30,8 +27,6 @@ class _ResultPageState extends State<ResultPage> {
 
   @override
   Widget build(BuildContext context) {
-
-
     return Scaffold(
       backgroundColor: Colors.grey.shade900,
       body: SafeArea(
@@ -82,14 +77,14 @@ class _ResultPageState extends State<ResultPage> {
                 padding: const EdgeInsets.all(15.0),
                 child: buildButton(
                     Colors.blue, Colors.deepPurpleAccent, 'Tentar Novamente',
-                    () {
-                  setState(() {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const QuizPage()));
-                  });
-                }),
+                        () {
+                      setState(() {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const QuizPage()));
+                      });
+                    }),
               ),
             ),
           ],
