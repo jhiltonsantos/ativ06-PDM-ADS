@@ -1,5 +1,5 @@
 import 'package:path/path.dart';
-import 'package:quizz_desafio/database/dao/questions_dao.dart';
+import 'package:quizz_flutter/database/dao/questions_dao.dart';
 import 'package:sqflite/sqflite.dart';
 
 Future<Database> getDatabase() async {

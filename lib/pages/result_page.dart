@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:quizz_desafio/pages/quiz_page.dart';
-import 'package:quizz_desafio/resources/build_button.dart';
+import 'package:quizz_flutter/resources/build_button.dart';
+
+import 'quiz_page.dart';
+
 
 class ResultPage extends StatefulWidget {
   final int correctAnswers;

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:quizz_desafio/database/dao/questions_dao.dart';
-import 'package:quizz_desafio/domain/question.dart';
-import 'package:quizz_desafio/pages/result_page.dart';
-import 'package:quizz_desafio/resources/build_button.dart';
-import 'package:quizz_desafio/resources/icons_answer.dart';
+import 'package:quizz_flutter/database/dao/questions_dao.dart';
+import 'package:quizz_flutter/domain/question.dart';
+import 'package:quizz_flutter/pages/result_page.dart';
+import 'package:quizz_flutter/resources/build_button.dart';
+import 'package:quizz_flutter/resources/icons_answer.dart';
 
 enum Answer { TRUE, FALSE, MAYBE }
 

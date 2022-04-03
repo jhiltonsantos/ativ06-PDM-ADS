@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:quizz_desafio/database/dao/questions_dao.dart';
-import 'package:quizz_desafio/domain/question.dart';
-import 'package:quizz_desafio/pages/quiz_page.dart';
+import 'package:quizz_flutter/database/dao/questions_dao.dart';
+import 'package:quizz_flutter/domain/question.dart';
+import 'package:quizz_flutter/pages/quiz_page.dart';
+
 
 void main() {
   runApp(const QuizzDesafio());

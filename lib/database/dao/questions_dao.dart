@@ -1,5 +1,5 @@
-import 'package:quizz_desafio/database/app_database.dart';
-import 'package:quizz_desafio/domain/question.dart';
+import 'package:quizz_flutter/database/app_database.dart';
+import 'package:quizz_flutter/domain/question.dart';
 import 'package:sqflite/sqflite.dart';
 
 class QuestionsDAO {
